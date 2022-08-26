@@ -25,7 +25,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
       // Use the Checkout HTTP library to post a request to our server and fetch the redirect URL.
       // call token route to authorize token and then call preference route
       Checkout.http({
-        url: "https://7ae26f4c-dbf7-463f-be90-0ef1f571fae1.mock.pstmn.io/payment/token",
+        url: "https://6dd8628f-7295-4771-8994-6161c9a0d441.mock.pstmn.io/payment/token",
         method: "post",
         data: generateTokenData,
       })
@@ -48,7 +48,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
 
 function createPreference(token, preference) {
   Checkout.http({
-    url: "https://7ae26f4c-dbf7-463f-be90-0ef1f571fae1.mock.pstmn.io/payment/preference",
+    url: "https://6dd8628f-7295-4771-8994-6161c9a0d441.mock.pstmn.io/payment/preference",
     method: "post",
     data: preference,
     headers: { Authorization: `bearer ${token}` },
