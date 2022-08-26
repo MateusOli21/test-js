@@ -1,4 +1,4 @@
-const serverUrl = "https://6dd8628f-7295-4771-8994-6161c9a0d441.mock.pstmn.io";
+const serverUrl = "https://cbfee712-ac19-445d-83b3-4e6c3d76f617.mock.pstmn.io";
 
 LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
   // Create a new instance of external Payment Option and set its properties.
