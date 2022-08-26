@@ -44,8 +44,9 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
           });
           // createPreference(responseBody.value, preference);
         })
-        .catch(function () {
+        .catch(function (err) {
           // Handle a potential error in the HTTP request.
+          console.log(err);
           callback({
             success: false,
             error_code: "error on first catch block",
