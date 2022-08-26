@@ -1,3 +1,5 @@
+const serverUrl = "https://6dd8628f-7295-4771-8994-6161c9a0d441.mock.pstmn.io";
+
 LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
   // Create a new instance of external Payment Option and set its properties.
   const AcmeExternalPaymentOption = PaymentOptions.ExternalPayment({
@@ -25,18 +27,28 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
       // Use the Checkout HTTP library to post a request to our server and fetch the redirect URL.
       // call token route to authorize token and then call preference route
       Checkout.http({
-        url: "https://6dd8628f-7295-4771-8994-6161c9a0d441.mock.pstmn.io/payment/token",
+        url: `${serverUrl}/payment/token`,
         method: "post",
         data: generateTokenData,
       })
         .then(function (responseBody) {
-          createPreference(responseBody.value, preference);
+          console.log(responseBody);
+          Checkout.http({
+            url: `${serverUrl}/payment/preference`,
+            method: "post",
+            data: preference,
+            headers: { Authorization: `bearer ${token}` },
+          }).then(function (response) {
+            console.log(response);
+            callback(response.data);
+          });
+          // createPreference(responseBody.value, preference);
         })
         .catch(function () {
           // Handle a potential error in the HTTP request.
           callback({
             success: false,
-            error_code: "payment_processing_error",
+            error_code: "error on first catch block",
           });
         });
     },
@@ -48,7 +60,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
 
 function createPreference(token, preference) {
   Checkout.http({
-    url: "https://6dd8628f-7295-4771-8994-6161c9a0d441.mock.pstmn.io/payment/preference",
+    url: `${serverUrl}/payment/preference`,
     method: "post",
     data: preference,
     headers: { Authorization: `bearer ${token}` },
