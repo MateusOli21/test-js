@@ -33,7 +33,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
       })
         .then(function (res) {
           const token = res.data.value;
-          createPreference(token, preferenceData);
+          createPreference(Checkout, token, preferenceData);
         })
         .catch(function (err) {
           // Handle a potential error in the HTTP request.
@@ -50,7 +50,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
   Checkout.addPaymentOption(AcmeExternalPaymentOption);
 });
 
-function createPreference(token, preference) {
+function createPreference(Checkout, token, preference) {
   Checkout.http({
     url: `${serverUrl}/payment/preference`,
     method: "post",
