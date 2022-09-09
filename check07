@@ -14,11 +14,13 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
 });
 
 function buildTokenAndCreatePreference(Checkout, callback) {
+  console.log("COMEÇOU A EXECUÇÃO")
   let tokenData = {
     id: Checkout.getData("order.cart.id"),
     storeId: Checkout.getData("storeId"),
     token: Checkout.getData("order.cart.hash"),
   };
+  console.log(`TOKEN DATA -> ${tokenData}`)
 
   Checkout.http({
     url: `${SERVER_URL}/payment/token`,
@@ -26,6 +28,9 @@ function buildTokenAndCreatePreference(Checkout, callback) {
     data: tokenData,
   })
     .then(function (res) {
+      console.log("CAIU NA FUNÇÃO THEN")
+      const token = res.data.value;
+      console.log(`PEGOU O TOKEN --> ${token}`)
       const token = res.data.value;
       createPreference(Checkout, callback, token);
     })
@@ -39,11 +44,13 @@ function buildTokenAndCreatePreference(Checkout, callback) {
 }
 
 function createPreference(Checkout, callback, token) {
+  console.log("CAIU NA CREATE PREFERENCE")
   const preference = {
     id: Checkout.getData("order.cart.id"),
     storeId: Checkout.getData("storeId"),
     callbackUrls: Checkout.getData("callbackUrls"),
   };
+  console.log(`CRIOU A PREFERENCE --> ${preference}`)
 
   Checkout.http({
     url: `${SERVER_URL}/payment/preference`,
