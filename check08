@@ -6,6 +6,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
     // Set the option's unique ID as it is configured on the Payment Provider so they can be related at the checkout.
     id: CHECKOUT_PRO_PAYMENT_ID,
     onSubmit: function (callback) {
+      console.log("COMEÇOU A EXECUÇÃO")
       buildTokenAndCreatePreference(Checkout, callback);
     },
   });
@@ -14,7 +15,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
 });
 
 function buildTokenAndCreatePreference(Checkout, callback) {
-  console.log("COMEÇOU A EXECUÇÃO")
+  console.log("ENTROU NO BUILD TOKEN")
   let tokenData = {
     id: Checkout.getData("order.cart.id"),
     storeId: Checkout.getData("storeId"),
