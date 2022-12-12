@@ -6,12 +6,6 @@ const TRANSPARENT_CARD_PAYMENT_ID = "mercado_pago_checkout_card";
 
 LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
   let currentCardBin = null;
-  const efectivoMLB = [{ name: "Bradesco", code: "bradesco" }]
-  const efectivoMLM = [{ name: "Oxxo", code: "oxxo" }]
-  const efectivoMLA = [
-    { name: "Rapipago", code: "rapipago" },
-    { name: "Pago Facil", code: "pagofacil" }
-  ]
   const efectivoList = defineEfectivoList(Checkout)
 
   const checkoutProPaymentOption = PaymentOptions.ModalPayment({
@@ -55,12 +49,15 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
 
 function defineEfectivoList(Checkout) {
   if(Checkout.getData("country") === "AR") {
-     return efectivoMLA
+     return [
+       { name: "Rapipago", code: "rapipago" },
+       { name: "Pago Facil", code: "pagofacil" }
+     ]
   }
   if(Checkout.getData("country") === "BR") {
-     return efectivoMLB
+     return [{ name: "Bradesco", code: "bradesco" }]
   }
-  return efectivoMLM
+  return [{ name: "Oxxo", code: "oxxo" }]
 }
 
 async function createPreference(Checkout, callback) {
