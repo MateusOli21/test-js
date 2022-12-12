@@ -11,7 +11,8 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
   const efectivoMLA = [
     { name: "Rapipago", code: "rapipago" },
     { name: "Pago Facil", code: "pagofacil" }
-  ] 
+  ]
+  const efectivoList = defineEfectivoList(Checkout)
 
   const checkoutProPaymentOption = PaymentOptions.ModalPayment({
     id: CHECKOUT_PRO_PAYMENT_ID,
@@ -24,7 +25,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
     PaymentOptions.Transparent.TicketPayment({
       id: TRANSPARENT_TICKET_PAYMENT_ID,
       fields: {
-        efectivo_list: [{ name: "Oxxo", code: "oxxo" }],
+        efectivo_list: efectivoList,
       },
       onSubmit: async function (callback) {
         await createTicketPayment(Checkout, callback);
