@@ -3,6 +3,7 @@ const CARD_TOKEN_URL = "https://api.mercadopago.com/v1/card_tokens";
 const CHECKOUT_PRO_PAYMENT_ID = "mercado_pago_checkout_pro";
 const TRANSPARENT_TICKET_PAYMENT_ID = "mercado_pago_checkout_ticket";
 const TRANSPARENT_CARD_PAYMENT_ID = "mercado_pago_checkout_card";
+const TRANSPARENT_BOLETO_PAYMENT_ID = "mercado_pago_checkout_boleto";
 
 LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
   let currentCardBin = null;
@@ -41,10 +42,18 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
       await createCardPayment(Checkout, callback);
     },
   });
+  
+  const transparentBoletoPaymentOption = PaymentOptions.Transparent.BoletoPayment({
+    id: TRANSPARENT_BOLETO_PAYMENT_ID,
+    onSubmit: async function (callback) {
+      await createBoletoPayment(Checkout, callback);
+    },
+  })
 
   Checkout.addPaymentOption(checkoutProPaymentOption);
   Checkout.addPaymentOption(transparentTicketPaymentOption);
   Checkout.addPaymentOption(transparentCardPaymentOption);
+  Checkout.addPaymentOption(transparentBoletoPaymentOption);
 });
 
 function defineEfectivoList(Checkout) {
@@ -58,6 +67,14 @@ function defineEfectivoList(Checkout) {
      return [{ name: "Bradesco", code: "bradesco" }]
   }
   return [{ name: "Oxxo", code: "oxxo" }]
+}
+
+async function createBoletoPayment(Checkout, callback) {
+    const { form, ...checkoutData } = Checkout.getData();
+    callback({
+      success: false,
+      error_code: "boleto_processing_error",
+    });
 }
 
 async function createPreference(Checkout, callback) {
