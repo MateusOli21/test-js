@@ -7,7 +7,7 @@ const TRANSPARENT_BOLETO_PAYMENT_ID = "mercado_pago_checkout_boleto";
 
 LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
   let currentCardBin = null;
-  const efectivoList = defineEfectivoList(Checkout)
+  const efectivoList = null
 
   const checkoutProPaymentOption = PaymentOptions.ModalPayment({
     id: CHECKOUT_PRO_PAYMENT_ID,
