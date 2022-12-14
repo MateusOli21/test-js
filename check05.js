@@ -23,7 +23,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
         efectivo_list: efectivoList,
       },
       onLoad: async function() {
-        await findTicketOptions(CheckoutCheckout);
+        await findTicketOptions(Checkout);
       },
       onSubmit: async function (callback) {
         await createTicketPayment(Checkout, callback);
