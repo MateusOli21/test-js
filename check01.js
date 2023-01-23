@@ -5,7 +5,7 @@ const TRANSPARENT_TICKET_PAYMENT_ID = "mercado_pago_checkout_ticket";
 const TRANSPARENT_CARD_PAYMENT_ID = "mercado_pago_checkout_card";
 const TRANSPARENT_PIX_PAYMENT_ID = "mercado_pago_checkout_pix";
 const TRANSPARENT_BOLETO_PAYMENT_ID = "mercado_pago_checkout_boleto";
-const CREDITS_PAYMENT_ID = "mercado_pago_checkout_boleto";
+const CREDITS_PAYMENT_ID = "mercado_pago_checkout_credits";
 
 LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
   let currentCardBin = null;
