@@ -1,4 +1,5 @@
-const SERVER_URL = "https://api.mercadopago.com/alpha/platforms/tienda-nube";
+// const SERVER_URL = "https://api.mercadopago.com/alpha/platforms/tienda-nube";
+const SERVER_URL = "https://api.mercadopago.com/beta/platforms/tienda-nube";
 const CARD_TOKEN_URL = "https://api.mercadopago.com/v1/card_tokens";
 const CHECKOUT_PRO_PAYMENT_ID = "mercado_pago_checkout_pro";
 const TRANSPARENT_TICKET_PAYMENT_ID = "mercado_pago_checkout_ticket";
