@@ -31,7 +31,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
     },
   });
 
-  const creditsPaymentOption = PaymentOptions.ModalPayment({
+  const creditsPaymentOption = PaymentOptions.ExternalPayment({
     id: CREDITS_PAYMENT_ID,
     onSubmit: async function (callback) {
       await createCredits(Checkout, callback);
