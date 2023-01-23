@@ -26,6 +26,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
 
   const checkoutProPaymentOption = PaymentOptions.ModalPayment({
     id: CHECKOUT_PRO_PAYMENT_ID,
+    name: "Mercado Pago Checkout Pro",
     onSubmit: async function (callback) {
       await createPreference(Checkout, callback);
     },
@@ -33,6 +34,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
 
   const creditsPaymentOption = PaymentOptions.ExternalPayment({
     id: CREDITS_PAYMENT_ID,
+    name: "Mercado Pago Credits",
     onSubmit: async function (callback) {
       await createCredits(Checkout, callback);
     },
