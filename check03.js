@@ -99,7 +99,7 @@ async function createPreference(Checkout, callback) {
 async function createCredits(Checkout, callback) {
   try {
     const paymentRequest = {
-      ...checkoutData.getData(),
+      ...Checkout.getData(),
       credits: true,
     };
     const response = await Checkout.http({
