@@ -1,23 +1,23 @@
 function createButton() {
-  console.log("COMEÇANDO SCRIPT")
   let baseComp = document.createElement("div");
+  baseComp.style.backgroundColor = "#5386E4"
+  baseComp.style.padding = "8px"
+  baseComp.style.borderRadius = "8px"
+  baseComp.style.width = "fit-content"
+  
   let paragraph = document.createElement("p");
-  paragraph.style.backgroundColor = "#5386E4"
   paragraph.style.color = "#fff"
-  paragraph.style.padding = "8px"
-  paragraph.style.borderRadius = "8px"
-  baseComp.append("Testando elemento", paragraph);
+  paragraph.append("Compre com Mercado Credits")
   
-  console.log("CRIADO ELEMENTO P")
+  baseComp.append(paragraph);
+  
   let teste = document.getElementsByClassName("price-holder");
-  
   console.log("BUSCANDO ELEMENTO PRICE-HOLDER", teste)
   teste[0].appendChild(baseComp);
 
   baseComp.addEventListener("click", function () {
     alert("Fui clicado");
   });
-  
   console.log("FIM DO SCRIPT")
 }
 
