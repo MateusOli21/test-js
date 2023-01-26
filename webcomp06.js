@@ -18,7 +18,7 @@ template.innerHTML = `
     .modal-wrapper {
         display: none; 
         position: absolute; 
-        z-index: 100; 
+        z-index: 10000; 
         padding-top: 100px; 
         left: 0;
         top: 0;
