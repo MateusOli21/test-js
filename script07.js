@@ -3,7 +3,7 @@ function loadMpWebComponent() {
   
     const widgetScript = document.createElement("script");
     widgetScript.src = "https://cdn.jsdelivr.net/gh/MateusOli21/test-js@main/mp-web-com.js";
-    widgetScript.type = "text/script";
+    widgetScript.type = "text/javascript";
     widgetScript.id = "mp-widget-script";
     
     let priceHolderElement = document.getElementsByClassName("price-holder");
