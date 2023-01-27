@@ -95,6 +95,7 @@ template.innerHTML = `
 
       <h2>Pague com Mercado Credits</h2>
       <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati reprehenderit enim natus dignissimos hic esse aperiam, consectetur praesentium eos harum delectus sint quo ullam odio</span>
+      <p id="product-name">Nome do produto: </p>
 
       <h3>Como funciona?</h3>
       <div class="credits-steps">
@@ -127,11 +128,15 @@ class MercadoPagoModal extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["display"];
+    return ["display", "product-name"];
   }
 
   get modalDisplay() {
     return this.getAttribute("display");
+  }
+
+  get productName() {
+    return this.getAttribute("product-name");
   }
 
   connectedCallback() {
@@ -146,9 +151,17 @@ class MercadoPagoModal extends HTMLElement {
       .removeEventListener("click", this._hideModal);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    console.log("CHANGED", name, oldValue, newValue);
-    if (this.modalDisplay && this.shadowRoot) {
+  attributeChangedCallback(attribute, oldValue, newValue) {
+    this._toggleModalDisplay(attribute, newValue)
+    this._insertProductName(attribute)
+  }
+
+  _hideModal() {
+    this.setAttribute("display", "none");
+  }
+
+  _toggleModalDisplay(attribute, newValue) {
+     if (this.modalDisplay && this.shadowRoot && attribute === "display") {
       if (newValue === "block") {
         this.shadowRoot.querySelector("#mp-modal").style.display = "block";
       } else {
@@ -157,8 +170,12 @@ class MercadoPagoModal extends HTMLElement {
     }
   }
 
-  _hideModal() {
-    this.setAttribute("display", "none");
+  _insertProductName(attribute) {
+    if(this.productName && this.shadowRoot && attribute === "product-name") {
+      let element = this.shadowRoot.querySelector("#product-name")
+      let text = document.createTextNode(this.productName)
+      element.appendChild(text);
+    }
   }
 }
 
