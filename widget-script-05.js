@@ -90,6 +90,16 @@ function setAnchorPoints() {
 function appendWidgetComponent(anchorElement, position, id) {
   anchorElement.insertAdjacentHTML(position, createWidgetHtml(id));
   anchorElement.insertAdjacentElement(position, widgetScript);
+  
+  
+  let scriptWidget = document.createElement('script');
+  scriptWidget.id = `${id}-event`;
+  scriptWidget.innerHTML = `
+    document.querySelector("#${id}").addEventListener('widget-clicked', function (e) {
+      console.log("aqui!!", e)
+    })
+  `;
+  anchorElement.appendChild(scriptWidget);
 }
 
 function loadMpWebComponent() {
