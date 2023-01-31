@@ -33,6 +33,9 @@ class MercadoPagoWidget extends HTMLElement {
 
   connectedCallback() {
     this.shadowRoot.querySelector("#modal-open-btn").addEventListener('click', this._showModal.bind(this))
+    this.shadowRoot.addEventListener('widget-clicked', function (e) {
+      console.log('listend to widget-clicked event', e)
+    });
   }
 
   disconnectedCallback() {
