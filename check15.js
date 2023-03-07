@@ -269,6 +269,7 @@ function checkForIdentification(Checkout) {
     if (idNumber && idNumber.length == 11) idType = "CPF";
   }
   if(country === 'AR'){
+     idNumber = Checkout.getData("form.cardHolderIdNumber");
      if (idNumber && (idNumber.length === 7 || idNumber.length === 8)) {
        idType = 'DNI'
      } else {
