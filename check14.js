@@ -100,7 +100,7 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
     bubbles: true,
     composed: false
   })
-  const test = document.querySelector('#mercado_pago_checkout_pro')
+  const test = document.querySelector('#iFrameResizer0')
   test.dispatchEvent(myEvent)
 
 });
