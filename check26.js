@@ -92,6 +92,17 @@ LoadCheckoutPaymentContext(function (Checkout, PaymentOptions) {
   Checkout.addPaymentOption(transparentPixPaymentOption);
   Checkout.addPaymentOption(transparentBoletoPaymentOption);
 
+  let choPro = document.querySelector('#radio-option-mercado_pago_checkout_pro')
+  let choCard = document.querySelector('#radio-option-mercado_pago_checkout_card')
+
+    choPro.addEventListener('click', function () {
+        console.log('TESTE CLICK CHO PRO')
+    })
+
+    choCard.addEventListener('click', function () {
+        console.log('TESTE CLICK CHO CARD')
+    })
+
   // overwrite installments for checkout pro
   appendChoProInstallments(Checkout)
 });
